@@ -128,9 +128,31 @@ router.get('/countries/:countryId', async function (req,res,next){
     }
 })
 
-/* router.post('/activity', async function (req,res,next){
-    const {name,difficulty,duration,season,countries} = req.body
-
-}) */
+router.post('/activity', async function (req,res,next){
+    const {name,difficulty,duration,season,countriesId} = req.body
+    if(!name,!difficulty,!duration,!season,!countriesId){res.status(404).send("No se han agregado los datos necesarios")}
+    try {
+        const str = name.slice(0,3);
+        const code = Math.round(name.slice(0,3).split("").map((cv)=>cv.charCodeAt()).reduce((a,b)=>a+b)*(name.length/2))
+        
+        const newActivity = await Activity.create({
+            id: str + code,
+            name,
+            difficulty,
+            duration,
+            season,
+        })
+        
+        for (let i = 0; i < countriesId.length; i++) {
+            const result = await Country.findByPk(countriesId[i]);
+            await result.addActivity(newActivity)
+        }
+        await newActivity.addCountry(countriesId) 
+        
+        res.status(200).send("Actividad agregada satisfactoriamente")
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router;
