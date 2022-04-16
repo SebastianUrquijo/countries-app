@@ -5,12 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('country', {
     id:{
-      type: DataTypes.CHAR(3),
+      type: DataTypes.STRING(3),
       allowNull: false,
       primaryKey: true,
-      validate:{
-        len: 3
-      }
     },
     name: {
       type: DataTypes.STRING,
@@ -32,10 +29,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     area:{
-      type: DataTypes.STRING
+      type: DataTypes.REAL
     },
     population:{
-      type: DataTypes.STRING
+      type: DataTypes.BIGINT
     },
     /* route:{
       type: DataTypes.VIRTUAL,
@@ -43,6 +40,8 @@ module.exports = (sequelize) => {
         return `/countries/${this.id}`
       }
     } */
-  });
+  },
+  { timestamps: false }
+  );
 };
 
