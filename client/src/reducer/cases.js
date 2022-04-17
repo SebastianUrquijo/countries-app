@@ -1,0 +1,5 @@
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const COUNTRY_DETAIL = "COUNTRY_DETAIL";
+export const COUNTRY_NAME = "COUNTRY_NAME"
+export const SORT_AND_FILTER = "SORT_AND_FILTER"
+export const ADD_ACTIVITY = "ADD_ACTIVITY"
