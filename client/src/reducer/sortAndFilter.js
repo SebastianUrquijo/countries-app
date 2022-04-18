@@ -4,11 +4,11 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
         if(activities === 'all'){
             if(continents==='all'){
                 if(data ==='name'){return allCountries.sort((a,b)=>a[data].localeCompare(b[data]))}
-                else{ allCountries.sort((a,b)=>a[data].localeCompare(b[data]))}
+                else{ return allCountries.sort((a,b)=>a[data] -b[data])}
             }else{
                 const res = allCountries.filter((country)=>country.continent.includes(continents))
                     if(data === 'name'){return res.sort((a,b)=>a[data].localeCompare(b[data]))}
-                    else{return res.sort((a,b)=>a[data].localeCompare(b[data]))}
+                    else{return res.sort((a,b)=>a[data] -b[data])}
             }
         }else{
             const temp = allCountries.filter((country)=>{
@@ -20,11 +20,11 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
               })
             if(continents==='all'){
                 if(data ==='name'){return temp.sort((a,b)=>a[data].localeCompare(b[data]))}
-                else{return temp.sort((a,b)=>a[data].localeCompare(b[data]))}
+                else{return temp.sort((a,b)=>a[data] - b[data])}
             }else{
                 const aux = temp.filter((country)=>country.continent.includes(continents))
                     if(data === 'name'){return aux.sort((a,b)=>a[data].localeCompare(b[data]))}
-                    else{return aux.sort((a,b)=>a[data].localeCompare(b[data]))}
+                    else{return aux.sort((a,b)=>a[data] - b[data])}
             }
         }
     }
@@ -32,11 +32,11 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
         if(activities === 'all'){
             if(continents==='all'){
                 if(data ==='name'){return allCountries.sort((a,b)=>b[data].localeCompare(a[data]))}
-                else{return allCountries.sort((a,b)=>b[data].localeCompare(a[data]))}
+                else{return allCountries.sort((a,b)=>b[data] - a[data])}
             }else{
                 const res = allCountries.filter((country)=>country.continent.includes(continents))
                     if(data === 'name'){return res.sort((a,b)=>b[data].localeCompare(a[data]))}
-                    else{return res.sort((a,b)=>b[data].localeCompare(a[data]))}
+                    else{return res.sort((a,b)=>b[data] - a[data])}
             }
         }else{
             const temp = allCountries.filter((country)=>{
@@ -49,11 +49,11 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
             
             if(continents==='all'){
                 if(data ==='name'){return temp.sort((a,b)=>b[data].localeCompare(a[data]))}
-                else{return temp.sort((a,b)=>b[data].localeCompare(a[data]))}
+                else{return temp.sort((a,b)=>b[data] - a[data])}
             }else{
                 const aux = temp.filter((country)=>country.continent.includes(continents))
                     if(data === 'name'){return aux.sort((a,b)=>b[data].localeCompare(a[data]))}
-                    else{return aux.sort((a,b)=>b[data].localeCompare(a[data]))}
+                    else{return aux.sort((a,b)=>b[data] - a[data])}
             }
         }
     }

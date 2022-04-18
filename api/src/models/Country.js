@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       type: DataTypes.REAL
     },
     population:{
-      type: DataTypes.BIGINT
+      type: DataTypes.REAL
     },
     /* route:{
       type: DataTypes.VIRTUAL,
