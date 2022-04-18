@@ -1,0 +1,20 @@
+.navBar{
+    display: flex;
+    background-color: gray;
+    height: 50px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.linkButton{
+    text-decoration: none;
+    color: black;
+}
+
+
+.countriesBox{
+    padding-left: 10px;
+}
+.aboutBox{
+    padding-left: 10px;
+}

@@ -1,0 +1,10 @@
+.countriesZone{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.countryPlace{
+    text-decoration: none;
+    color:black
+}

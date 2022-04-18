@@ -11,17 +11,23 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get('/countries',async function (req,res,next){
-    const {name} = req.query
+router.get('/countries',async function(req,res,next){
+    const{name}=req.query
     try {
-       if(name){
-           let countriesSearch = await Country.findAll({
-               include: [{model: Activity}],
-               where: {[Op.or]: [{ name: { [Op.iLike]: `%${name}%` } },]},
-            }); 
-            return res.json(countriesSearch)  
-        }
-        else{
+        if(name){
+            let countriesSearch = await Country.findAll({
+                include: [{model: Activity}],
+                where: {[Op.or]: [{ name: { [Op.iLike]: `%${name}%` } },]},
+             }); 
+             return res.json(countriesSearch)
+        }else{next()}
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/countries',async function (req,res,next){
+    try {
         let countriesDb = await Country.findAll({
             include: [{model:Activity}]
         })
@@ -49,11 +55,9 @@ router.get('/countries',async function (req,res,next){
             })
             const data = await Country.bulkCreate(resultApi);
             if(data)return res.status(200).send(data);
-        }else{
-            res.json(countriesDb)
-        }
+        }else{res.json(countriesDb)}
     }
-    } catch (error) {
+ catch (error) {
         next(error)
     }
 })
