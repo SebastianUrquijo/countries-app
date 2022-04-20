@@ -1,0 +1,38 @@
+.paginationBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background-color: gray;
+    border: none;
+    border-radius: 5px;
+    color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: large;
+    cursor: pointer;
+}
+.pageActive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: large;
+    cursor: pointer;
+}

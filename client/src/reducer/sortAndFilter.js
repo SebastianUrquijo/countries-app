@@ -1,5 +1,7 @@
 
-export default function sortAndFilter({order,activities,continents,data},allCountries){
+export default function sortAndFilter({order,activities,continents,data},array){
+   const result = new Set(array)
+   var allCountries = [...result]
     if(order ==="ascending"){
         if(activities === 'all'){
             if(continents==='all'){
@@ -16,7 +18,7 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
                   for(let i = 0; i < country.activities.length; i++){ 
                     if(country.activities[i].name === activities) {return country}
                   }
-                }return null
+                }return "Error"
               })
             if(continents==='all'){
                 if(data ==='name'){return temp.sort((a,b)=>a[data].localeCompare(b[data]))}
@@ -44,7 +46,7 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
                   for(let i = 0; i < country.activities.length; i++){ 
                     if(country.activities[i].name === activities) {return country}
                   }
-                }return null
+                }return "Error"
               })
             
             if(continents==='all'){

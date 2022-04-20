@@ -1,6 +1,7 @@
 import {useSelector, useDispatch} from 'react-redux'
 import { useState,useEffect } from 'react'
 import {sortAndFilter} from '../reducer/actions'
+import '../styles/Sort.css'
 
 export default function Sort({setCountriesXPage,setCurrentPage}){
     const activities = useSelector(state=>state.activities)
@@ -12,11 +13,17 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
 
     })
     const dispatch = useDispatch()
-    const handleChange = (e)=> {setSort((prev)=>({...prev,[e.target.name]:e.target.value}))
+    const handleChange = (event)=>{
+        setSort({
+            ...sort,
+            [event.target.name]: event.target.value,
+        })
+        setCurrentPage(1)
+    }
+    
+    const handleCountryXPage = (event)=>{setCountriesXPage(event.target.value);
     setCurrentPage(1)};
-    const handleCountryXPage = (e)=>{setCountriesXPage(e.target.value);
-    setCurrentPage(1)};
-
+    
     useEffect(()=>{
         dispatch(sortAndFilter(sort))
     },[dispatch,sort]);
@@ -33,14 +40,23 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
                 <div className='formBox'>
                     <div className='formOptions'>
                         <select className='activitiesOption' name='activities' id='activitiesFilter' onChange={handleChange}>
-                            <option value='all'>all</option>
+                            <option value='all'>All</option>
                             {activities && activities.map((a)=>{return(
                                 <option key={a.id} value={a.name}>{a.name}</option>
                             )})}
                         </select>
+                        <select className='continentsOption' name='continents' id='continentsFilter' onChange={handleChange}>
+                            <option value='all'>All</option>
+                            <option value='Europe'>Europa</option>
+                            <option value='Asia'>Asia</option>
+                            <option value='Africa'>Africa</option>
+                            <option value='Oceania'>Oceania</option>
+                            <option value='America'>America</option>
+                            <option value='Antarctica'>Antartica</option>
+                        </select>
                         <select className='dataOption' name='data' id='dataOrder' onChange={handleChange}>
-                            <option value='name'>name</option>
-                            <option value='population'>population</option>
+                            <option value='name'>Name</option>
+                            <option value='population'>Population</option>
                         </select>
                     </div>
                     <div className='paginationBox'>

@@ -1,0 +1,67 @@
+.sortForm{
+    display: flex;
+    flex-direction: column;
+}
+.formBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+.orderOption{
+    margin: 10px;
+    padding: 5px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    background-color: gray;
+    color:beige;
+    font-size: large;
+}
+.paginationBox{
+    margin-right: 20px;
+}
+.paginationOptions{
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: gray;
+    color:beige;
+    border-radius: 5px;
+    font-size:medium;
+}
+.dataOption{
+    margin-left: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: gray;
+    color:beige;
+    border-radius: 5px;
+    font-size:medium;
+}
+.continentsOption{
+    margin-left: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: gray;
+    color:beige;
+    border-radius: 5px;
+    font-size:medium;
+}
+.activitiesOption{
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: gray;
+    color:beige;
+    border-radius: 5px;
+    font-size:medium;
+}

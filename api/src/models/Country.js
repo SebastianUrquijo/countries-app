@@ -34,12 +34,6 @@ module.exports = (sequelize) => {
     population:{
       type: DataTypes.REAL
     },
-    /* route:{
-      type: DataTypes.VIRTUAL,
-      get: function(){
-        return `/countries/${this.id}`
-      }
-    } */
   },
   { timestamps: false }
   );

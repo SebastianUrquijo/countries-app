@@ -31,7 +31,7 @@ router.get('/countries',async function (req,res,next){
         let countriesDb = await Country.findAll({
             include: [{model:Activity}]
         })
-        if(countriesDb.length === 0){
+        if(countriesDb.length === 0){           
             const searchApi = await axios.get('https://restcountries.com/v3/all')
             const resultApi = await searchApi.data.map(({
                 cca3:id,
@@ -45,10 +45,10 @@ router.get('/countries',async function (req,res,next){
                     return {
                     id,
                     name,
-                    flag: flag?flag[0]:"Bandera",
-                    continent:continent?continent[0]:"No tiene un Continente",
-                    capital:capital?capital[0]:"No hay una Capital",
-                    subregion,
+                    flag: flag?flag[0]:"País sin bandera",
+                    continent:continent?continent[0]:"No hace parte de un continente",
+                    capital:capital?capital[0]:"El país no tiene una capital",
+                    subregion: subregion? subregion : "No hay una subregión",
                     area,
                     population
                 };

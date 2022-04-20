@@ -3,9 +3,9 @@ import sortAndFilter from './sortAndFilter'
 
 const initialState = {
     allCountries: [],
+    countriesRestore:[],
     countryDetail: {},
     countriesFilter:[],
-    countriesRestore:[],
     activities: []
 }
 
@@ -14,8 +14,8 @@ export default function rootReducer(state = initialState, action){
         case GET_COUNTRIES:
             return {
                 ...state,
-                countriesRestore:action.payload,
-                allCountries:[...action.payload,...state.countriesRestore],
+                allCountries:action.payload,
+                countriesRestore:action.payload
             };
         case COUNTRY_DETAIL:
             return{
@@ -30,7 +30,7 @@ export default function rootReducer(state = initialState, action){
         case SORT_AND_FILTER:
             return {
                 ...state,
-                allCountries: sortAndFilter({...action.payload},...state.allCountries)
+                allCountries: sortAndFilter({...action.payload},[...state.allCountries,...state.countriesRestore])
             }
         case ADD_ACTIVITY: 
             return {

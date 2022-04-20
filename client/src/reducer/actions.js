@@ -19,7 +19,7 @@ export function getCountryDetail(id){
         return fetch(`http://localhost:3001/countries/${id}`)
         .then(response => response.json())
         .then(country =>{
-            dispatch({type:COUNTRY_DETAIL,payload: country})
+            dispatch({type:COUNTRY_DETAIL,payload:country})
         })
         .catch(error=>{
             console.log(error)
