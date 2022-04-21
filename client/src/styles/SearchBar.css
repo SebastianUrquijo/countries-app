@@ -1,0 +1,11 @@
+.inputSearch{
+    margin-left: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: beige;
+    color: black;
+    border-radius: 5px;
+    font-size:medium;
+}

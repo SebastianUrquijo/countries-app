@@ -1,0 +1,10 @@
+.formularyPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.addForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

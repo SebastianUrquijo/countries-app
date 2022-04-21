@@ -1,15 +1,18 @@
 import { GET_COUNTRIES,COUNTRY_DETAIL,COUNTRY_NAME,SORT_AND_FILTER,ADD_ACTIVITY } from "./cases";
 
-export function getCountriesDb(){
+export function getCountriesDb(datalength){
     return function(dispatch){
-        return fetch('http://localhost:3001/countries')
-        .then(response => response.json())
-        .then(countries =>{
-            dispatch({type: GET_COUNTRIES,payload: countries})
-        })
-        .catch(error=>{
-            console.log(error)
-        })
+        if(datalength === 0){
+            return fetch('http://localhost:3001/countries')
+            .then(response => response.json())
+            .then(countries =>{
+                dispatch({type: GET_COUNTRIES,payload: countries,datalength})
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        }
+        dispatch({type: GET_COUNTRIES,payload: datalength})
     }
     
 }

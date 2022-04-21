@@ -2,19 +2,34 @@
     display: flex;
     background-color: gray;
     height: 50px;
-    align-items: center;
     padding-left: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+.navZone{
+    display: flex;
+    align-items: center;
 }
 
 .linkButton{
     text-decoration: none;
     color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.formDiv{
+    display: flex;
+    align-items: center;
 }
 
+.boxPart{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.boxPart2{
+    margin-left: 10px;
+    margin-right: 20px;
+}
 
-.countriesBox{
-    padding-left: 10px;
-}
-.aboutBox{
-    padding-left: 10px;
-}

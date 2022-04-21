@@ -12,11 +12,12 @@ const initialState = {
 export default function rootReducer(state = initialState, action){
     switch(action.type){
         case GET_COUNTRIES:
-            return {
+            if(action.datalength === 0){return {
                 ...state,
                 allCountries:action.payload,
                 countriesRestore:action.payload
-            };
+            };}    
+            return state
         case COUNTRY_DETAIL:
             return{
                 ...state,
@@ -30,7 +31,7 @@ export default function rootReducer(state = initialState, action){
         case SORT_AND_FILTER:
             return {
                 ...state,
-                allCountries: sortAndFilter({...action.payload},[...state.allCountries,...state.countriesRestore])
+                allCountries: sortAndFilter({...action.payload},[...state.countriesRestore])
             }
         case ADD_ACTIVITY: 
             return {

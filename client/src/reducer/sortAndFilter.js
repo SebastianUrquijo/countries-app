@@ -1,7 +1,6 @@
 
-export default function sortAndFilter({order,activities,continents,data},array){
-   const result = new Set(array)
-   var allCountries = [...result]
+export default function sortAndFilter({order,activities,continents,data},allCountries){
+   
     if(order ==="ascending"){
         if(activities === 'all'){
             if(continents==='all'){

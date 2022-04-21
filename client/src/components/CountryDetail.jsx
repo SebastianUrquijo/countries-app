@@ -26,14 +26,14 @@ export default function CountryDetail (){
                 <div className="flagBrick">
                 <img className= 'countryBox' src={country.flag} alt="{name}" height='200px' width='300px'/>
                 <div className="mainBox">
-                <p>Capital: {country.capital}</p>
-                <p>Continente: {country.continent}</p>
-                <p>Región: {country.subregion}</p>
+                <p id="P1">Capital: {country.capital}</p>
+                <p id="P1">Continente: {country.continent}</p>
+                <p id="P1">Región: {country.subregion}</p>
                 </div>
                 </div>
                 <div className="secondData">
-                <p>Area: {country.area} Km<sup>2</sup></p>
-                <p>Población: {country.population} Habitantes</p>
+                <p id="P1">Area: {country.area} Km<sup>2</sup></p>
+                <p id="P1">Población: {country.population} Habitantes</p>
                 </div>
                 <h2 className="secondTitle">Actividades</h2>
                 {country ? country.activities ? country.activities.map((activity)=>{

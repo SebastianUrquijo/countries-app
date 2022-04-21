@@ -1,5 +1,4 @@
-import React from 'react';
-import {useEffect,useState } from 'react';
+import React, {useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { getCountriesDb} from '../reducer/actions';
@@ -12,17 +11,18 @@ import '../styles/Countries.css'
 export default function Countries(){
     const dispatch = useDispatch()
     const allCountries = useSelector(state=>state.allCountries)
-    console.log(allCountries.length)
     const [countriesXpage,setCountriesXPage] = useState(10)
     const [currentPage,setCurrentPage]=useState(1)
     const lastCountry = currentPage *   countriesXpage
     const fisrtCountry = lastCountry - countriesXpage
     const renderCountries = allCountries.slice(fisrtCountry,lastCountry)
-
+    const countries = allCountries.length
+    console.log(countries)
+    console.log(allCountries)
 
     useEffect(()=>{
-        dispatch(getCountriesDb())
-    },[dispatch]);
+        dispatch(getCountriesDb(countries))
+    },[dispatch,countries]);
     
     return(
         <div>
