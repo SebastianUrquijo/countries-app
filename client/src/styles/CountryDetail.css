@@ -12,7 +12,7 @@
     margin: 30px;
     display: flex;
     flex-direction: column;
-    border: black solid 1px;
+    border: solid #0d6fa8 1px;
     width: 50%;
     justify-content: space-evenly;
     border-radius: 20px;

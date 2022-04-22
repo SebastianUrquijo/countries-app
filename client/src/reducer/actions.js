@@ -1,4 +1,5 @@
 import { GET_COUNTRIES,COUNTRY_DETAIL,COUNTRY_NAME,SORT_AND_FILTER,ADD_ACTIVITY } from "./cases";
+const axios = require('axios');
 
 export function getCountriesDb(datalength){
     return function(dispatch){
@@ -44,17 +45,10 @@ export function getCountriesByName(name){
 }
 
 export function addActivity(activity){
-    return function(dispatch){
-        return fetch('http://localhost:3001/activity',{
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'},
-            body: JSON.stringify(activity),
-        })
-        .then(response =>response.json())
-        .then(result=>{
-            dispatch({type:ADD_ACTIVITY,payload:result})
+    return function (dispatch){
+        axios.post('http://localhost:3001/activity',activity)
+        .then((response)=>{
+            dispatch({type: ADD_ACTIVITY,payload: response.data})
         })
         .catch(error=>{
             console.log(error)

@@ -10,10 +10,10 @@ export default function CountryDetail (){
     const {id}=useParams()
     const dispatch=useDispatch()
     const country = useSelector(state=>state.countryDetail)
-    console.log(country)
     useEffect(()=>{
         dispatch(getCountryDetail(id))
     },[dispatch,id]);
+    const activities = country.activities
     
     return(
         <div className="alphaZone">
@@ -35,7 +35,8 @@ export default function CountryDetail (){
                 <p id="P1">Población: {country.population} Habitantes</p>
                 </div>
                 <h2 className="secondTitle">Actividades</h2>
-                {country ? country.activities ? country.activities.map((activity)=>{
+                <div >  
+                {activities && activities.map((activity)=>{
                     return(
                         <div key = {activity.id}>
                             <Activity
@@ -47,7 +48,8 @@ export default function CountryDetail (){
                             />
                         </div>
                     )
-                }): <span>Aun no hay actividades</span> : <></> }
+                })}
+                </div>
             </div>
         </div>
     )

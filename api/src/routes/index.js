@@ -94,8 +94,9 @@ router.post('/activity', async function (req,res,next){
             await result.addActivity(newActivity)
         }
         await newActivity.addCountry(countriesId) 
+        const findActivities = await Activity.findByPk(str+code)
         
-        res.status(200).send("Actividad agregada satisfactoriamente")
+        res.status(200).send(findActivities)
     } catch (error) {
         next(error)
     }

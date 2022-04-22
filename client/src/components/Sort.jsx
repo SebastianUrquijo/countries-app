@@ -5,14 +5,13 @@ import '../styles/Sort.css'
 
 export default function Sort({setCountriesXPage,setCurrentPage}){
     const activities = useSelector(state=>state.activities)
-    console.log(activities)
     const [sort,setSort] =useState({
         order:"ascending",
         activities: "all",
         continents: "all",
         data: "name",
-
     })
+    
     const dispatch = useDispatch()
     const handleChange = (event)=>{
         setSort({
@@ -62,10 +61,10 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
                     </div>
                     <div className='paginationBox'>
                         <select className='paginationOptions' name='boxes' id='boxes' onChange={handleCountryXPage}>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
+                            <option value="9">9</option>
+                            <option value="18">18</option>
+                            <option value="27">27</option>
+                            <option value="36">36</option>
                         </select>
                     </div>
                 </div>

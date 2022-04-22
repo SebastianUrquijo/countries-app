@@ -1,34 +1,46 @@
 .countryCard{
-    border: solid gray 1px;
+    border: solid #0d6fa8 1px;
     border-radius: 10px;
     margin: 20px;
-    width: 227px;
-    height: 70px;
+    width: 350px;
+    height: 170px;
     display: flex;
+    flex-direction: column;
     position: relative;
     background-color: rgb(221,221,221);
 }
-
 .countryName{
     display: flex;
-    margin: 0%;
+    justify-content: center;
+    margin: 5px;
+}
+.countryBanner{
+    display: flex;
 }
 .infoZone{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding-left: 10px;
     padding-top: 10px;
-    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;;
 }
 .flagZone{
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-left: 5px;
+    padding-top: 10px;
+    padding-left: 5px;   
 }
-
 .countryContinent{
     display: flex;
-    margin: 0%;
     padding-left: 5px;
+    font-size: larger;
+}
+.countryPop{
+    display: flex;
+    
+    font-size: medium;
+}
+.countryFlag{
+    border-radius: 10px
 }

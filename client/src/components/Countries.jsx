@@ -11,13 +11,12 @@ import '../styles/Countries.css'
 export default function Countries(){
     const dispatch = useDispatch()
     const allCountries = useSelector(state=>state.allCountries)
-    const [countriesXpage,setCountriesXPage] = useState(10)
+    const [countriesXpage,setCountriesXPage] = useState(9)
     const [currentPage,setCurrentPage]=useState(1)
     const lastCountry = currentPage *   countriesXpage
     const fisrtCountry = lastCountry - countriesXpage
     const renderCountries = allCountries.slice(fisrtCountry,lastCountry)
     const countries = allCountries.length
-    console.log(countries)
    
 
     useEffect(()=>{
@@ -43,6 +42,7 @@ export default function Countries(){
                             name = {country.name}
                             flag = {country.flag}
                             continent = {country.continent}
+                            population = {country.population}
                             />
                             </Link>
                     </div>

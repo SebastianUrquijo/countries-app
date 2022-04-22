@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "../styles/Home.css"
+//
 export default function Home (){
     return(
         <div className="homeBackground">
-            <Link to='/countries'>
-            <p>Ingresar</p>
-            </Link>
+         <div className="wrap">
+         <Link className='homeLink' to='/countries'>
+             <button className="homeButton">Ingresar</button>
+             </Link>
+         </div>
         </div>
     )
 }

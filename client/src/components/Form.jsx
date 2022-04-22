@@ -36,11 +36,11 @@ export default function Form(){
                 return(
                     setInput({
                         ...input,
-                        [i.target.name]:parseInt(i.target.value)
+                        [i.target.name]:i.target.value
                     }),
                     setErrors(validations({
                         ...input,
-                        [i.target.name]:parseInt(i.target.value)
+                        [i.target.name]:i.target.value
                     }))
                  )
             case "difficulty":
@@ -126,16 +126,25 @@ export default function Form(){
         }
     }
 
-    async function handleSubmit(event){
+    function handleSubmit(event){
         event.preventDefault()
-        await dispatch(addActivity(input))
-        setInput({
-            name: "",
-        duration:"",
-        difficulty:"",
-        season:[],
-        countriesId: [],
-        })
+        const data = {
+            name: input.name || "",
+        duration: input.duration || "",
+        difficulty: input.difficulty || "",
+        season: input.season || "",
+        countriesId: input.countriesId || "",
+        }
+        if(Object.keys(errors).length === 0){
+            dispatch(addActivity(data))
+            setInput({
+                name: "",
+            duration:"",
+            difficulty:"",
+            season:[],
+            countriesId: [],
+            }) 
+        }
     }
 
     return (
@@ -200,7 +209,7 @@ export default function Form(){
                 })}        
             </div>
             <div>
-                {Object.keys(errors).length === 0 ?
+                {Object.keys(errors).length === 0 && Object.keys(input).length > 0 ? 
                 <button type='submit' className='finalButton'>Agregar Actividad</button>   
             :null}
             </div>
