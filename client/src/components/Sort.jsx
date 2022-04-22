@@ -5,6 +5,7 @@ import '../styles/Sort.css'
 
 export default function Sort({setCountriesXPage,setCurrentPage}){
     const activities = useSelector(state=>state.activities)
+    console.log(activities)
     const [sort,setSort] =useState({
         order:"ascending",
         activities: "all",

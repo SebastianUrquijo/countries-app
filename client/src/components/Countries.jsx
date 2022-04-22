@@ -18,7 +18,7 @@ export default function Countries(){
     const renderCountries = allCountries.slice(fisrtCountry,lastCountry)
     const countries = allCountries.length
     console.log(countries)
-    console.log(allCountries)
+   
 
     useEffect(()=>{
         dispatch(getCountriesDb(countries))

@@ -55,7 +55,7 @@ router.get('/countries',async function (req,res,next){
             })
             const data = await Country.bulkCreate(resultApi);
             if(data)return res.status(200).send(data);
-        }else{res.json(countriesDb)}
+        }else{res.send(countriesDb)}
     }
  catch (error) {
         next(error)
@@ -68,7 +68,7 @@ router.get('/countries/:countryId', async function (req,res,next){
         let singleCountry = await Country.findByPk(countryId,{
             include:[{model: Activity}]  
         })
-        return res.json(singleCountry)
+        return res.send(singleCountry)
     } catch (error) {
         next(error)
     }

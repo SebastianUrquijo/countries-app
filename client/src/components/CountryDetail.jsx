@@ -11,7 +11,6 @@ export default function CountryDetail (){
     const dispatch=useDispatch()
     const country = useSelector(state=>state.countryDetail)
     console.log(country)
-    console.log(country.activities)
     useEffect(()=>{
         dispatch(getCountryDetail(id))
     },[dispatch,id]);

@@ -45,14 +45,16 @@ export function getCountriesByName(name){
 
 export function addActivity(activity){
     return function(dispatch){
-        return fetch('http://localhost:3001/api/activity',{
+        return fetch('http://localhost:3001/activity',{
             method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'},
             body: JSON.stringify(activity),
-            headers: {'Content-Type': 'application/json;charset=utf-8'},
         })
         .then(response =>response.json())
-        .then(activity=>{
-            dispatch({type:ADD_ACTIVITY,payload:activity})
+        .then(result=>{
+            dispatch({type:ADD_ACTIVITY,payload:result})
         })
         .catch(error=>{
             console.log(error)
