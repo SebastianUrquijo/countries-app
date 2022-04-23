@@ -38,8 +38,7 @@
 }
 .countryPop{
     display: flex;
-    
-    font-size: medium;
+    font-size: small;
 }
 .countryFlag{
     border-radius: 10px

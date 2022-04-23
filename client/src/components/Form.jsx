@@ -148,8 +148,10 @@ export default function Form(){
     }
 
     return (
-        <div>
+        <div className='formPage'>
+            <div className="navSector">
             <Nav/>
+            </div>
             <div className="formularyPage">
             <h1>Agregar Actividad</h1>
 

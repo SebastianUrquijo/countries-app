@@ -1,7 +1,18 @@
+.formPage{
+  display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
 .formularyPage{
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: #0d6fa8 solid 1px;
+    border-radius: 20px;
+    margin: 20px;
+    width: 80%;
+   
 }
 .addForm{
     display: flex;

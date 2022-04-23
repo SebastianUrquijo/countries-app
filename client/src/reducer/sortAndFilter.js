@@ -12,13 +12,14 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
                     else{return res.sort((a,b)=>a[data] -b[data])}
             }
         }else{
-            const temp = allCountries.filter((country)=>{
-                if(country.activities.length){
-                  for(let i = 0; i < country.activities.length; i++){ 
-                    if(country.activities[i].name === activities) {return country}
+            const temp = allCountries.filter(function (obj){
+                if(obj.activities && obj.activities.length > 0){
+                  for(let i = 0; i<obj.activities.length; i++){
+                    if(obj.activities[i].name === activities)return obj
                   }
-                }return "Error"
+                }return null
               })
+              console.log(temp)
             if(continents==='all'){
                 if(data ==='name'){return temp.sort((a,b)=>a[data].localeCompare(b[data]))}
                 else{return temp.sort((a,b)=>a[data] - b[data])}
@@ -40,12 +41,12 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
                     else{return res.sort((a,b)=>b[data] - a[data])}
             }
         }else{
-            const temp = allCountries.filter((country)=>{
-                if(country.activities.length){
-                  for(let i = 0; i < country.activities.length; i++){ 
-                    if(country.activities[i].name === activities) {return country}
+            const temp = allCountries.filter((obj)=>{
+                if(obj.activities && obj.activities.length > 0){
+                  for(let i = 0; i<obj.activities.length; i++){
+                    if(obj.activities[i].name === activities)return obj
                   }
-                }return "Error"
+                }return "No tiene actividad"
               })
             
             if(continents==='all'){

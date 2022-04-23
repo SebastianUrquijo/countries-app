@@ -15,6 +15,14 @@ export default function CountryDetail (){
     },[dispatch,id]);
     const activities = country.activities
     
+    const numberformat = function(number){
+        const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+        const rep = '$1,';
+        let arr = number.toString().split('.');
+        arr[0] = arr[0].replace(exp,rep);
+        return arr[1] ? arr.join('.'): arr[0];
+    }
+
     return(
         <div className="alphaZone">
             <div className="navSector">
@@ -31,8 +39,8 @@ export default function CountryDetail (){
                 </div>
                 </div>
                 <div className="secondData">
-                <p id="P1">Area: {country.area} Km<sup>2</sup></p>
-                <p id="P1">Población: {country.population} Habitantes</p>
+                <p id="P1">Area: {country.area && numberformat(country.area)} Km<sup>2</sup></p>
+                <p id="P1">Población: {country.population && numberformat(country.population)} Habitantes</p>
                 </div>
                 <h2 className="secondTitle">Actividades</h2>
                 <div >  
