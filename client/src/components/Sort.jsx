@@ -1,6 +1,7 @@
 import {useSelector, useDispatch} from 'react-redux'
 import { useState,useEffect } from 'react'
 import {sortAndFilter} from '../reducer/actions'
+import SearchBar from './SearchBar'
 import '../styles/Sort.css'
 
 export default function Sort({setCountriesXPage,setCurrentPage}){
@@ -30,6 +31,9 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
 
     return(
         <div>
+            <div className='searchBox'>
+            <SearchBar/>
+            </div>
             <form className='sortForm'>
                 <div>
                     <select className='orderOption' name='order' id='orderSelection' onChange={handleChange}>

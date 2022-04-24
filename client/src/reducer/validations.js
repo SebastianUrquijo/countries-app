@@ -1,14 +1,6 @@
-export default function validations (input,countries){
+export default function validations (input){
     let errors = {}
-    /* let seasonvalues = ["Verano","Primavera","Otoño","Invierno"]
-    var checkseasons = function(a,b){
-        var check = []
-       for (var i = 0; i < a.length; i++) {
-        if (b.indexOf(a[i]) === -1) {
-          check.push(a[i]);}
-      }
-      return check
-        } */
+    
    if(!input.name){
        errors.name = "Es necesario un nombre para la actividad"
    }else if(!/^[A-Za-z\u00f1\u00d1\s]+$/g.test(input.name.trim())){
@@ -32,8 +24,6 @@ export default function validations (input,countries){
 
    if(input.season.length === 0){
        errors.season = "Debes seleccionar al menos una de las temporadas"
-   /* }else if (checkseasons(input.season,seasonvalues).length){
-        errors.season = "No hagas trampa o me voy!!!" */
    }
    
    if(input.countriesId.length === 0){

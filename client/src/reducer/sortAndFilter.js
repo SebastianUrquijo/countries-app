@@ -1,6 +1,5 @@
 
 export default function sortAndFilter({order,activities,continents,data},allCountries){
-   
     if(order ==="ascending"){
         if(activities === 'all'){
             if(continents==='all'){
@@ -12,14 +11,14 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
                     else{return res.sort((a,b)=>a[data] -b[data])}
             }
         }else{
-            const temp = allCountries.filter(function (obj){
+            /* const temp = allCountries.filter(function (obj){
                 if(obj.activities && obj.activities.length > 0){
                   for(let i = 0; i<obj.activities.length; i++){
                     if(obj.activities[i].name === activities)return obj
                   }
                 }return null
-              })
-              console.log(temp)
+              }) */
+              const temp = allCountries.filter((e)=> e.activities.length)
             if(continents==='all'){
                 if(data ==='name'){return temp.sort((a,b)=>a[data].localeCompare(b[data]))}
                 else{return temp.sort((a,b)=>a[data] - b[data])}
@@ -41,14 +40,14 @@ export default function sortAndFilter({order,activities,continents,data},allCoun
                     else{return res.sort((a,b)=>b[data] - a[data])}
             }
         }else{
-            const temp = allCountries.filter((obj)=>{
+            /* const temp = allCountries.filter((obj)=>{
                 if(obj.activities && obj.activities.length > 0){
                   for(let i = 0; i<obj.activities.length; i++){
                     if(obj.activities[i].name === activities)return obj
                   }
                 }return "No tiene actividad"
-              })
-            
+              }) */
+              const temp = allCountries.filter((e)=> e.activities.length >0)
             if(continents==='all'){
                 if(data ==='name'){return temp.sort((a,b)=>b[data].localeCompare(a[data]))}
                 else{return temp.sort((a,b)=>b[data] - a[data])}

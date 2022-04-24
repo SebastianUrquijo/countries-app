@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import '../styles/Nav.css'
-import SearchBar from './SearchBar'
 
 
 export default function Nav (){
@@ -30,7 +29,6 @@ export default function Nav (){
             </Link>
             </div>
             <div className="boxPart2">
-            <SearchBar/>
             </div>
             </div>
         </nav>

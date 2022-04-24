@@ -4,8 +4,11 @@
     border: none;
     cursor: pointer;
     outline: none;
-    background-color: beige;
-    color: black;
+    background-color: gray;
+    color: antiquewhite;
     border-radius: 5px;
     font-size:medium;
+}
+.inputSearch::placeholder{
+    color: antiquewhite;
 }

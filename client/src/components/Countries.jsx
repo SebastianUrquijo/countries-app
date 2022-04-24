@@ -1,5 +1,5 @@
 import React, {useEffect,useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { getCountriesDb} from '../reducer/actions';
 import Country from './Country'
@@ -17,11 +17,16 @@ export default function Countries(){
     const fisrtCountry = lastCountry - countriesXpage
     const renderCountries = allCountries.slice(fisrtCountry,lastCountry)
     const countries = allCountries.length
-   
     console.log(allCountries)
+    console.log(countries)
+
+    const [params] = useSearchParams()
+    const queryname = params.get("name") ?? "";
+    
+    
     useEffect(()=>{
-        dispatch(getCountriesDb(countries))
-    },[dispatch,countries]);
+        dispatch(getCountriesDb(countries,queryname))
+    },[dispatch,countries,queryname]);
     
     return(
         <div>

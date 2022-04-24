@@ -1,21 +1,28 @@
-import { GET_COUNTRIES,COUNTRY_DETAIL,COUNTRY_NAME,SORT_AND_FILTER,ADD_ACTIVITY } from "./cases";
+import { GET_COUNTRIES,COUNTRY_DETAIL,SORT_AND_FILTER,ADD_ACTIVITY } from "./cases";
 const axios = require('axios');
 
-export function getCountriesDb(datalength){
+export function getCountriesDb(datalength,query){
     return function(dispatch){
-        if(datalength === 0){
-            return fetch('http://localhost:3001/countries')
-            .then(response => response.json())
-            .then(countries =>{
+        if(datalength ===0){
+            if(!query){
+                return fetch("http://localhost:3001/countries")
+                .then(response => response.json())
+                .then(countries =>{
+                dispatch({type: GET_COUNTRIES,payload: countries,datalength})
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
+            } return fetch(`http://localhost:3001/countries?name=${query}`)
+            .then(response =>response.json())
+            .then(countries=>{
                 dispatch({type: GET_COUNTRIES,payload: countries,datalength})
             })
             .catch(error=>{
                 console.log(error)
             })
-        }
-        dispatch({type: GET_COUNTRIES,payload: datalength})
+        } dispatch({type: GET_COUNTRIES,payload: datalength})
     }
-    
 }
 
 export function getCountryDetail(id){
@@ -24,19 +31,6 @@ export function getCountryDetail(id){
         .then(response => response.json())
         .then(country =>{
             dispatch({type:COUNTRY_DETAIL,payload:country})
-        })
-        .catch(error=>{
-            console.log(error)
-        })
-    }
-}
-
-export function getCountriesByName(name){
-    return function(dispatch){
-        return fetch(`http://localhost:3001/countries?name=${name}`)
-        .then(response => response.json())
-        .then(countries =>{
-            dispatch({type:COUNTRY_NAME,payload:countries})
         })
         .catch(error=>{
             console.log(error)

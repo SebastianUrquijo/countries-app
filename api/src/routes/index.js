@@ -13,6 +13,7 @@ const router = Router();
 
 router.get('/countries',async function(req,res,next){
     const{name}=req.query
+    console.log(name)
     try {
         if(name){
             let countriesSearch = await Country.findAll({
@@ -29,7 +30,7 @@ router.get('/countries',async function(req,res,next){
 router.get('/countries',async function (req,res,next){
     try {
         let countriesDb = await Country.findAll({
-            include: [{model:Activity}]
+            include: [{model: Activity}]
         })
         if(countriesDb.length === 0){           
             const searchApi = await axios.get('https://restcountries.com/v3/all')

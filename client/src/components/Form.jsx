@@ -7,7 +7,7 @@ import { addActivity } from '../reducer/actions'
 
 export default function Form(){
     const dispatch = useDispatch()
-    const countries = useSelector((state)=>state.countriesRestore)
+    const countries = useSelector((state)=>state.allCountries)
     const [errors,setErrors]=useState({})
     const [input,setInput] = useState({
         name: "",
@@ -16,8 +16,7 @@ export default function Form(){
         season:[],
         countriesId: [],
     })
-    console.log(input)
-    console.log(errors)
+    
     function handleInputChange(i){
         switch(i.target.name){
             case "name":
