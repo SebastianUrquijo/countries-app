@@ -16,17 +16,17 @@ export default function Countries(){
     const lastCountry = currentPage *   countriesXpage
     const fisrtCountry = lastCountry - countriesXpage
     const renderCountries = allCountries.slice(fisrtCountry,lastCountry)
-    const countries = allCountries.length
+   
     console.log(allCountries)
-    console.log(countries)
+    
 
     const [params] = useSearchParams()
     const queryname = params.get("name") ?? "";
     
     
     useEffect(()=>{
-        dispatch(getCountriesDb(countries,queryname))
-    },[dispatch,countries,queryname]);
+        dispatch(getCountriesDb(queryname))
+    },[dispatch,queryname]);
     
     return(
         <div>

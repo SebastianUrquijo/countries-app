@@ -13,7 +13,6 @@ const router = Router();
 
 router.get('/countries',async function(req,res,next){
     const{name}=req.query
-    console.log(name)
     try {
         if(name){
             let countriesSearch = await Country.findAll({

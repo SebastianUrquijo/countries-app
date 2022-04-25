@@ -14,11 +14,13 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
     })
     
     const dispatch = useDispatch()
+    
     const handleChange = (event)=>{
         setSort({
             ...sort,
             [event.target.name]: event.target.value,
         })
+        dispatch(sortAndFilter(sort))
         setCurrentPage(1)
     }
     

@@ -1,14 +1,13 @@
 import { GET_COUNTRIES,COUNTRY_DETAIL,SORT_AND_FILTER,ADD_ACTIVITY } from "./cases";
 const axios = require('axios');
 
-export function getCountriesDb(datalength,query){
+export function getCountriesDb(query){
     return function(dispatch){
-        if(datalength ===0){
             if(!query){
                 return fetch("http://localhost:3001/countries")
                 .then(response => response.json())
                 .then(countries =>{
-                dispatch({type: GET_COUNTRIES,payload: countries,datalength})
+                dispatch({type: GET_COUNTRIES,payload: countries})
                 })
                 .catch(error=>{
                     console.log(error)
@@ -16,12 +15,11 @@ export function getCountriesDb(datalength,query){
             } return fetch(`http://localhost:3001/countries?name=${query}`)
             .then(response =>response.json())
             .then(countries=>{
-                dispatch({type: GET_COUNTRIES,payload: countries,datalength})
+                dispatch({type: GET_COUNTRIES,payload: countries})
             })
             .catch(error=>{
                 console.log(error)
             })
-        } dispatch({type: GET_COUNTRIES,payload: datalength})
     }
 }
 
