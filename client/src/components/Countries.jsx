@@ -24,6 +24,7 @@ export default function Countries(){
     const allDb= queryname? queryCountries : allCountries
     const renderCountries = allDb.slice(fisrtCountry,lastCountry)
 
+            console.log(allCountries)
     useEffect(()=>{
         if(queryname)
         dispatch(getCountriesByName(queryname))

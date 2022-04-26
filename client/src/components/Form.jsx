@@ -7,7 +7,7 @@ import { addActivity } from '../reducer/actions'
 
 export default function Form(){
     const dispatch = useDispatch()
-    const countries = useSelector((state)=>state.allCountries)
+    const countries = useSelector((state)=>state.countriesDb)
     const [errors,setErrors]=useState({})
     const [input,setInput] = useState({
         name: "",

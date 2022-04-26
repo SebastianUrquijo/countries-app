@@ -20,7 +20,7 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
             ...sort,
             [event.target.name]: event.target.value,
         })
-        dispatch(sortAndFilter(sort))
+        /* dispatch(sortAndFilter(sort)) */
         setCurrentPage(1)
     }
     

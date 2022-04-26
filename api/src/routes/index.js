@@ -18,7 +18,10 @@ router.get('/countries',async function(req,res,next){
             let countriesSearch = await Country.findAll({
                 include: [{model: Activity}],
                 where: {[Op.or]: [{ name: { [Op.iLike]: `%${name}%` } },]},
-             }); 
+             });
+             if(!countriesSearch.length){
+               return res.status(404).send("Country Not Found")
+            }
              return res.json(countriesSearch)
         }else{next()}
     } catch (error) {

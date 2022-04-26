@@ -12,7 +12,7 @@ export default function Nav (){
             </Link>
             </div>
             <div className="boxPart">
-            <Link className='linkButton'to='/countries'>
+            <Link className='linkButton'to='/countries' >
                 <h4>Countries</h4>
             </Link>
             </div>

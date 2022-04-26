@@ -23,7 +23,8 @@ export function getCountriesByName(query){
                 dispatch({type: GET_COUNTRIES_BY_NAME,payload: countries})
             })
             .catch(error=>{
-                console.log(error)
+                console.log(error.name + "El pais que buscas no exite" + error.message)
+                alert(`The country ...${query}... does not exist`)
             })
     }
 }
