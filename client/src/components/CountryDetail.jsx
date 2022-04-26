@@ -5,6 +5,7 @@ import { getCountryDetail } from "../reducer/actions";
 import Nav from "./Nav";
 import Activity from './Activity';
 import '../styles/CountryDetail.css'
+import Loading from "./Loading";
 
 export default function CountryDetail (){
     const {id}=useParams()
@@ -25,7 +26,9 @@ export default function CountryDetail (){
 
     return(
         <div className="alphaZone">
-            <div className="navSector">
+            {country?( 
+            <div className="navPage">
+            <div className="navSector">   
             <Nav/>
             </div>
             <div className="detailBox">
@@ -42,9 +45,9 @@ export default function CountryDetail (){
                 <p id="P1">Area: {country.area && numberformat(country.area)} Km<sup>2</sup></p>
                 <p id="P1">Población: {country.population && numberformat(country.population)} Habitantes</p>
                 </div>
-                <h2 className="secondTitle">Actividades</h2>
-                <div >  
-                {activities && activities.map((activity)=>{
+                <h2 className="secondTitle"><i>Actividades</i></h2>
+                <div>  
+                {activities.length ? activities.map((activity)=>{
                     return(
                         <div key = {activity.id}>
                             <Activity
@@ -56,9 +59,11 @@ export default function CountryDetail (){
                             />
                         </div>
                     )
-                })}
+                }): <h3 className="bannerAdd">Aun no hay actividades</h3>}
                 </div>
             </div>
+            </div>):<Loading/>}
+           
         </div>
     )
 }

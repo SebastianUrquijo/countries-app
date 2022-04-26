@@ -1,0 +1,33 @@
+.activityArea{
+    margin: 1rem;
+    display: flex;
+    border: black solid 1px;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    
+}
+.actTitle{
+    padding-top: 10px;
+    text-align: center;
+    font-size: large;
+}
+
+.actInfo{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.infoBlok{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.dimention{
+    margin: 0%;
+}
