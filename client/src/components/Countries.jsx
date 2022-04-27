@@ -23,7 +23,7 @@ export default function Countries(){
     const fisrtCountry = lastCountry - countriesXpage
     const allDb= queryname? queryCountries : allCountries
     const renderCountries = allDb.slice(fisrtCountry,lastCountry)
-    localStorage.clear();
+    
            
     useEffect(()=>{
         if(queryname)
