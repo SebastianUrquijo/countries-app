@@ -11,8 +11,9 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
         activities: "all",
         continents: "all",
         data: "name",
+        query: false
     })
-    console.log(activities)
+
     const dispatch = useDispatch()
     
     const handleChange = (event)=>{
@@ -52,11 +53,12 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
                         </select>
                         <select className='continentsOption' name='continents' id='continentsFilter' onChange={handleChange}>
                             <option value='all'>All</option>
-                            <option value='Europe'>Europa</option>
+                            <option value='Europe'>Europe</option>
                             <option value='Asia'>Asia</option>
                             <option value='Africa'>Africa</option>
                             <option value='Oceania'>Oceania</option>
-                            <option value='America'>America</option>
+                            <option value='North America'>North America</option>
+                            <option value='South America'>North America</option>
                             <option value='Antarctica'>Antartica</option>
                         </select>
                         <select className='dataOption' name='data' id='dataOrder' onChange={handleChange}>

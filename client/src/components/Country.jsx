@@ -23,7 +23,7 @@ export default function Country ({flag,continent,name,population}){
             </div>
             <div className="infoZone">
             <h3 className="countryContinent"><i>{continent}</i></h3>
-            <span className="countryPop">{numberformat(population)} Hab.</span>
+            <span className="countryPop">{numberformat(population)} Pop.</span>
             </div>
             </div>
         </div>

@@ -15,7 +15,6 @@ export function getCountriesDb(){
 }
 
 export function getCountriesByName(query){
-    console.log(query)
     return function(dispatch){
         return fetch(`http://localhost:3001/countries?name=${query}`)
             .then(response =>response.json())
@@ -23,22 +22,20 @@ export function getCountriesByName(query){
                 dispatch({type: GET_COUNTRIES_BY_NAME,payload: countries})
             })
             .catch(error=>{
-                console.log(error.name + "El pais que buscas no exite" + error.message)
-                alert(`The country ...${query}... does not exist`)
+                console.log(error.name + " El pais que buscas no existe " + error.message)
+                alert(`The country "${query}" does not exist`)
             })
     }
 }
 
 export function getCountryDetail(id){
-    return async function(dispatch){
-        try {
-            const response = await fetch(`http://localhost:3001/countries/${id}`);
-            const country = await response.json();
-            console.log(country)
-            dispatch({ type: COUNTRY_DETAIL, payload: country });
-        } catch (error) {
+    return function(dispatch){
+            return fetch(`http://localhost:3001/countries/${id}`)
+            .then(response=> response.json())
+            .then (country => {dispatch({ type: COUNTRY_DETAIL, payload: country })})
+        .catch (error=> {
             console.log(error);
-        }
+        })
     }
 }
 

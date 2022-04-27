@@ -11,6 +11,7 @@ export default function CountryDetail (){
     const {id}=useParams()
     const dispatch=useDispatch()
     const country = useSelector(state=>state.countryDetail)
+    
     useEffect(()=>{
         dispatch(getCountryDetail(id))
     },[dispatch,id]);
@@ -37,15 +38,15 @@ export default function CountryDetail (){
                 <img className= 'countryBox' src={country.flag} alt="{name}" height='200px' width='300px'/>
                 <div className="mainBox">
                 <p id="P1">Capital: {country.capital}</p>
-                <p id="P1">Continente: {country.continent}</p>
-                <p id="P1">Región: {country.subregion}</p>
+                <p id="P1">Continent: {country.continent}</p>
+                <p id="P1">Subregion: {country.subregion}</p>
                 </div>
                 </div>
                 <div className="secondData">
                 <p id="P1">Area: {country.area && numberformat(country.area)} Km<sup>2</sup></p>
-                <p id="P1">Población: {country.population && numberformat(country.population)} Habitantes</p>
+                <p id="P1">Population: {country.population && numberformat(country.population)} Pop.</p>
                 </div>
-                <h2 className="secondTitle"><i>Actividades</i></h2>
+                <h2 className="secondTitle"><i>Activities</i></h2>
                 <div>  
                 {activities?.length>0 ? activities.map((activity)=>{
                     return(
@@ -59,7 +60,7 @@ export default function CountryDetail (){
                             />
                         </div>
                     )
-                }): <h3 className="bannerAdd">Aun no hay actividades</h3>}
+                }): <h3 className="bannerAdd">No activities yet</h3>}
                 </div>
             </div>
             </div>):<Loading/>}

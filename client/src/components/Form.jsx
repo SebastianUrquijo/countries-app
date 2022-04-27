@@ -8,6 +8,7 @@ import { addActivity} from '../reducer/actions'
 export default function Form(){
     const dispatch = useDispatch()
     const countries = useSelector((state)=>state.countriesDb)
+    const activities = useSelector((state)=>state.activities)
     const [errors,setErrors]=useState({})
     const [input,setInput] = useState({
         name: "",
@@ -16,54 +17,26 @@ export default function Form(){
         season:[],
         countriesId: [],
     })
+    console.log(input)
+    console.log(errors)
+    function handleInputChange(i){  
+        setErrors(validations({...input,[i.target.name]:i.target.value},activities))
+        setInput({...input,[i.target.name]:i.target.value})            
+    }
     
-    function handleInputChange(i){
+    function handleArrayChange(i){
         switch(i.target.name){
-            case "name":
-                return(
-                    setInput({
-                        ...input,
-                        [i.target.name]:i.target.value
-                    }),
-                    setErrors(validations({
-                        ...input,
-                        [i.target.name]:i.target.value
-                    })
-                    )
-                )
-            case "duration":
-                return(
-                    setInput({
-                        ...input,
-                        [i.target.name]:i.target.value
-                    }),
-                    setErrors(validations({
-                        ...input,
-                        [i.target.name]:i.target.value
-                    }))
-                 )
-            case "difficulty":
-                return(
-                    setInput({
-                        ...input,
-                        [i.target.name]:i.target.value
-                     }),
-                     setErrors(validations({
-                         ...input,
-                         [i.target.name]:i.target.value
-                     }))
-                )
-            case "season":
+        case "season":
                 if(!input.season.includes(i.target.value) && input.season.length < 4){
                     return(
-                    setInput({
-                        ...input,
-                        [i.target.name]:[...input.season,i.target.value]
-                    }),
                     setErrors(validations({
                         ...input,
                         [i.target.name]:[i.target.value]
-                    }))
+                    })),
+                    setInput({
+                        ...input,
+                        [i.target.name]:[...input.season,i.target.value]
+                    })
                 )}
                 break;
             case "countriesId":
@@ -76,12 +49,11 @@ export default function Form(){
                     setErrors(validations({
                         ...input,
                         [i.target.name]:[i.target.value]
-                    },countries))
+                    }))
                 )}
                 break;
             default: break;
-        }
-    }
+    }}
 
     function daysLimit (data){
         switch(data.length){
@@ -170,7 +142,7 @@ export default function Form(){
             </div>
             <div> 
                 <h4>Temporada</h4><p id='P2'>¿En que temporadas se puede realizar la actividad?</p>
-                <select className={errors.season && "danger"} name="season" id="seasonsSelector" onChange={handleInputChange}>
+                <select className={errors.season && "danger"} name="season" id="seasonsSelector" onChange={handleArrayChange}>
                     <option hidden value='Escoge la temporada'>Escoge la temporada...</option>
                     <option value='Verano'>Verano</option>
                     <option value='Otoño'>Otoño</option>
@@ -180,7 +152,7 @@ export default function Form(){
                 {errors.season && (<p className='danger'>{errors.season}</p>)}
             </div>
             <div>
-                {input.season && input.season.map((season)=>{
+                {input.season?.length && input.season.map((season)=>{
                     return(
                         <button key={season} name="season" value={season} onClick={handleRemove}>{season}</button>
                     )
@@ -195,7 +167,7 @@ export default function Form(){
             </div>   
             <div>           
                 <h4>Países</h4><p id='P2'>¿En que países hay esta actividad?</p>
-                <select className={errors.countriesId && "danger"} name="countriesId" id="countriesSelector" onChange={handleInputChange} multiple={true} size={10}>
+                <select className={errors.countriesId && "danger"} name="countriesId" id="countriesSelector" onChange={handleArrayChange} multiple={true} size={10}>
                     {countries && countries.map((country)=>{return(
                         <option key={country.id} value={country.id}>{country.name}</option>
                             )})}

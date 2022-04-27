@@ -1,33 +1,39 @@
-export default function validations (input){
+export default function validations (input,activities){
     let errors = {}
-    
-   if(!input.name){
-       errors.name = "Es necesario un nombre para la actividad"
-   }else if(!/^[A-Za-z\u00f1\u00d1\s]+$/g.test(input.name.trim())){
-       errors.name = "El nombre no puede incluir caracteres especiales"
+   if(input.name){
+    if(input.name.trim()=== ""){
+       errors.name = "A name is required for the activity"
+   }
+   else if(!/^[A-Za-z\u00f1\u00d1\s]+$/g.test(input.name.trim())){
+       errors.name = "Name cannot include special characters"
    }
    else if(input.name.length < 3 || input.name.length > 30){
-       errors.name = "El nombre debe tener entre 3 y 30 caracteres"
+       errors.name = "Name must be between 3 and 30 characters"
    }
+   var check = activities && activities.map(activity => activity.name.toLowerCase() === input.name.toLowerCase());
+   if(check && check.length > 0){ errors.name = "Name already exists"} 
+    }
 
    if(!input.difficulty){
-        errors.difficulty = "Es necesario asignar una dificultad"
-   }else if(typeof parseInt(input.difficulty) !== "number"){
-       errors.name = "El valor debe ser un número "
-   }else if(parseInt(input.difficulty) < 1 || parseInt(input.difficulty) > 5){
-       errors.difficulty = "Solo puede ser un valor entre 1 y 5"
+        errors.difficulty = "It is necessary to assign a difficulty"
+   }
+   else if(typeof parseInt(input.difficulty) !== "number"){
+       errors.name = "Value must be a number"
+   }
+   else if(parseInt(input.difficulty) < 1 || parseInt(input.difficulty) > 5){
+       errors.difficulty = "Can only be a value between 1 and 5"
    }
 
    if(!input.duration){
-       errors.duration = "Debes especificar la duración de la actividad"
+       errors.duration = "You must specify the duration of the activity"
    }
 
    if(input.season.length === 0){
-       errors.season = "Debes seleccionar al menos una de las temporadas"
+       errors.season = "You must select at least one season"
    }
    
    if(input.countriesId.length === 0){
-       errors.countriesId = "Debes seleccionar al menos un país"
+       errors.countriesId = "You must select at least one country"
    }
 
    return errors
