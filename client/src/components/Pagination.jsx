@@ -8,7 +8,7 @@ export default function Pagination({currentPage,countriesXPage,totalCountries,se
         
         return(
             <div className="paginationBox">
-                {pages.length? pages.map((page)=>(
+                {pages.length > 1 ? pages.map((page)=>(
                     <button
                         key={page}
                         className={page === currentPage ? "pageActive" : "page"}

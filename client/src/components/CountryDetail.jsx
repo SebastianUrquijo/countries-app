@@ -47,7 +47,7 @@ export default function CountryDetail (){
                 </div>
                 <h2 className="secondTitle"><i>Actividades</i></h2>
                 <div>  
-                {activities.length ? activities.map((activity)=>{
+                {activities?.length>0 ? activities.map((activity)=>{
                     return(
                         <div key = {activity.id}>
                             <Activity

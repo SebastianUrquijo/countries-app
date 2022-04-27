@@ -6,7 +6,7 @@ const initialState = {
     countriesDb: [],
     countriesByName: [],
     countryDetail: {},
-    activities: []
+    activitie: []
 }
 
 export default function rootReducer(state = initialState, action){

@@ -23,8 +23,8 @@ export default function Countries(){
     const fisrtCountry = lastCountry - countriesXpage
     const allDb= queryname? queryCountries : allCountries
     const renderCountries = allDb.slice(fisrtCountry,lastCountry)
-
-            console.log(allCountries)
+    localStorage.clear();
+           
     useEffect(()=>{
         if(queryname)
         dispatch(getCountriesByName(queryname))
@@ -38,7 +38,8 @@ export default function Countries(){
             <Nav/>
             <Sort
             setCountriesXPage={setCountriesXPage}
-            setCurrentPage={setCurrentPage}    
+            setCurrentPage={setCurrentPage}
+            dataLength={allDb.length}    
             />
             </div>
             <div className='countriesZone'>
@@ -61,7 +62,7 @@ export default function Countries(){
         <Pagination
         currentPage={currentPage}
         countriesXPage={countriesXpage}
-        totalCountries={allCountries.length}
+        totalCountries={allDb.length}
         setCurrentPage={setCurrentPage}
         />
             </div>

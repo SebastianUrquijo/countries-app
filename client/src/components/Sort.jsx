@@ -4,7 +4,7 @@ import {sortAndFilter} from '../reducer/actions'
 import SearchBar from './SearchBar'
 import '../styles/Sort.css'
 
-export default function Sort({setCountriesXPage,setCurrentPage}){
+export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
     const activities = useSelector(state=>state.activities)
     const [sort,setSort] =useState({
         order:"ascending",
@@ -12,7 +12,7 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
         continents: "all",
         data: "name",
     })
-    
+    console.log(activities)
     const dispatch = useDispatch()
     
     const handleChange = (event)=>{
@@ -20,7 +20,6 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
             ...sort,
             [event.target.name]: event.target.value,
         })
-        /* dispatch(sortAndFilter(sort)) */
         setCurrentPage(1)
     }
     
@@ -65,14 +64,15 @@ export default function Sort({setCountriesXPage,setCurrentPage}){
                             <option value='population'>Population</option>
                         </select>
                     </div>
-                    <div className='paginationBox'>
+                    {dataLength >9 ?<div className='paginationBox'>
                         <select className='paginationOptions' name='boxes' id='boxes' onChange={handleCountryXPage}>
                             <option value="9">9</option>
                             <option value="18">18</option>
                             <option value="27">27</option>
                             <option value="36">36</option>
                         </select>
-                    </div>
+                    </div>:<></>}
+                    
                 </div>
             </form>
         </div>

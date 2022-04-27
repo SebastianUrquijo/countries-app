@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import '../styles/Form.css'
 import validations from '../reducer/validations'
-import { addActivity } from '../reducer/actions'
+import { addActivity} from '../reducer/actions'
 
 export default function Form(){
     const dispatch = useDispatch()

@@ -30,15 +30,15 @@ export function getCountriesByName(query){
 }
 
 export function getCountryDetail(id){
-    return function(dispatch){
-        return fetch(`http://localhost:3001/countries/${id}`)
-        .then(response => response.json())
-        .then(country =>{
-            dispatch({type:COUNTRY_DETAIL,payload:country})
-        })
-        .catch(error=>{
-            console.log(error)
-        })
+    return async function(dispatch){
+        try {
+            const response = await fetch(`http://localhost:3001/countries/${id}`);
+            const country = await response.json();
+            console.log(country)
+            dispatch({ type: COUNTRY_DETAIL, payload: country });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
