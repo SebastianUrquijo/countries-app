@@ -22,10 +22,12 @@ export default function Countries(){
     const lastCountry = currentPage *   countriesXpage
     const fisrtCountry = lastCountry - countriesXpage
     const allDb= queryname? queryCountries : allCountries
+    console.log(allDb)
     const renderCountries = allDb.slice(fisrtCountry,lastCountry)
     
            
     useEffect(()=>{
+        
         if(queryname)
         dispatch(getCountriesByName(queryname))
     },[dispatch,queryname]);

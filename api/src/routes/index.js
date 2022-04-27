@@ -105,6 +105,15 @@ router.post('/activity', async function (req,res,next){
     }
 })
 
-
+router.get('/activities',async function(req,res){
+    try {
+        let activitiesSearch = await Activity.findAll(
+            {include: [{model:Country}]}
+        )
+        res.send(activitiesSearch)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = router;

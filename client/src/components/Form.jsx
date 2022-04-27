@@ -17,8 +17,7 @@ export default function Form(){
         season:[],
         countriesId: [],
     })
-    console.log(input)
-    console.log(errors)
+    
     function handleInputChange(i){  
         setErrors(validations({...input,[i.target.name]:i.target.value},activities))
         setInput({...input,[i.target.name]:i.target.value})            
@@ -106,6 +105,7 @@ export default function Form(){
         season: input.season || "",
         countriesId: input.countriesId || "",
         }
+        console.log(data)
         if(Object.keys(errors).length === 0){
             dispatch(addActivity(data))
             setInput({

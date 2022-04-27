@@ -1,6 +1,6 @@
 import {useSelector, useDispatch} from 'react-redux'
 import { useState,useEffect } from 'react'
-import {sortAndFilter} from '../reducer/actions'
+import {sortAndFilter,getActivities} from '../reducer/actions'
 import SearchBar from './SearchBar'
 import '../styles/Sort.css'
 
@@ -11,10 +11,10 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
         activities: "all",
         continents: "all",
         data: "name",
-        query: false
     })
 
     const dispatch = useDispatch()
+    
     
     const handleChange = (event)=>{
         setSort({
@@ -29,6 +29,7 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
     
     useEffect(()=>{
         dispatch(sortAndFilter(sort))
+        dispatch(getActivities())
     },[dispatch,sort]);
 
     return(

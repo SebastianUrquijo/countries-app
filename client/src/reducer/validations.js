@@ -11,7 +11,7 @@ export default function validations (input,activities){
        errors.name = "Name must be between 3 and 30 characters"
    }
    var check = activities && activities.map(activity => activity.name.toLowerCase() === input.name.toLowerCase());
-   if(check && check.length > 0){ errors.name = "Name already exists"} 
+   if(check === true){ errors.name = "Name already exists"} 
     }
 
    if(!input.difficulty){

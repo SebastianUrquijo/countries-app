@@ -1,4 +1,4 @@
-import { GET_COUNTRIES,COUNTRY_DETAIL,SORT_AND_FILTER,ADD_ACTIVITY,GET_COUNTRIES_BY_NAME} from "./cases"
+import { GET_COUNTRIES,COUNTRY_DETAIL,SORT_AND_FILTER,ADD_ACTIVITY,GET_COUNTRIES_BY_NAME, GET_ACTIVITIES} from "./cases"
 import sortAndFilter from './sortAndFilter'
 
 const initialState = {
@@ -20,7 +20,7 @@ export default function rootReducer(state = initialState, action){
         case GET_COUNTRIES_BY_NAME:
             return{
                 ...state,
-                countriesByName:action.payload
+                countriesByName:action.payload,
             }
         case COUNTRY_DETAIL:
             return{
@@ -28,14 +28,18 @@ export default function rootReducer(state = initialState, action){
                 countryDetail:action.payload,
             };
         case SORT_AND_FILTER:
-            return {
+        return {
                 ...state,
-                allCountries: sortAndFilter({...action.payload},[...state.countriesDb])
+                allCountries: sortAndFilter({...action.payload},[...state.countriesDb]),
             }
         case ADD_ACTIVITY: 
             return {
+                state,
+            }
+        case GET_ACTIVITIES:
+            return {
                 ...state,
-                activities:[...state.activities,action.payload],
+                activities:action.payload
             }
        default: return state;    
     }
