@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SearchBar.css'
 
 export default function SearchBar(){
+   
+   const navigate = useNavigate()
     const validate = (value) => {
         let error={};
         let testSpace = /^\S+/;
@@ -15,11 +18,12 @@ export default function SearchBar(){
         return error;
     
     }
-
+    
    const[data, setData] = useState("")
    const[errors, setErrors] = useState("")
-   
-    function handleSubmit(e){
+   console.log(data)
+   console.log(errors)
+    /* function handleSubmit(e){
         if(!data.name){
         alert("No se ha puesto un nombre")
         e.preventDefault()
@@ -28,8 +32,8 @@ export default function SearchBar(){
         alert(errors.name)
         e.preventDefault()
         }
+   } */
 
-   }
    function handleSearch(i){
     setData(
         {...data,
@@ -39,13 +43,14 @@ export default function SearchBar(){
         [i.target.name]:i.target.value
     }))
 }
-    
+ 
     return(
         <div>
-        <form className ='searchSpan' onSubmit={(e)=> handleSubmit(e)}>
+    
             <input className='inputSearch' type='search' placeholder='Search any Country' name ="name" value={data.datanet} onChange={handleSearch} />
-            <button className='inputSearch' type='submit' value='Search'>Buscar</button>
-        </form>
+
+            <button className='inputSearch' type='submit' value='Search' onClick={()=> navigate(`/search/${data.name}`,{replace:true})}>Buscar</button>
+        
         </div>
     )
 }

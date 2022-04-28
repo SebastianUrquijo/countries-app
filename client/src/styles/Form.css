@@ -20,7 +20,6 @@
     align-items: center;
 }
 
-
 p.danger {
     color: red;
     font-size: 12px;
@@ -28,4 +27,22 @@ p.danger {
   
   input.danger {
     border: 2px solid red;
+  }
+
+  .bannerUpdate{
+    width: 50%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 1rem;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #0d6fa8;
+  }
+
+  .bannerUpdate:active {
+    color: #0d6fa8;
+    background-color: #fff;
+    border: 1px solid #0d6fa8;
   }

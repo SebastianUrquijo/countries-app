@@ -1,7 +1,6 @@
 import React from "react";
 import '../styles/Country.css'
 
-
 export default function Country ({flag,continent,name,population}){
     const countryname = function(name){
         if(name.length >= 25)return name.slice(0,22) + '...' 
@@ -28,5 +27,4 @@ export default function Country ({flag,continent,name,population}){
             </div>
         </div>
     )
-
 }

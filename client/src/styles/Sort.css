@@ -1,7 +1,4 @@
-.sortForm{
-    display: flex;
-    flex-direction: column;
-}
+
 .searchBox{
     display: flex;
     margin-top: 5px;

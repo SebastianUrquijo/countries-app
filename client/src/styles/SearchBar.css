@@ -1,3 +1,4 @@
+
 .inputSearch{
     margin-left: 5px;
     padding: 5px;
@@ -11,4 +12,10 @@
 }
 .inputSearch::placeholder{
     color: antiquewhite;
+}
+
+.restoreDiv{
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end
 }

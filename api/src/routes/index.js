@@ -79,7 +79,7 @@ router.get('/countries/:countryId', async function (req,res,next){
 
 router.post('/activity', async function (req,res,next){
     const {name,difficulty,duration,season,countriesId} = req.body
-    if(!name || !difficulty || !duration || !season || !countriesId){res.status(404).send("No se han agregado los datos necesarios")}
+    if(!name || !difficulty || !duration || !season || !countriesId){res.status(404).send({msg:"Invalid Data"})}
     try {
         const str = name.slice(0,3);
         const code = Math.round(name.slice(0,3).split("").map((cv)=>cv.charCodeAt()).reduce((a,b)=>a+b)*(name.length/2))
@@ -91,16 +91,20 @@ router.post('/activity', async function (req,res,next){
             duration,
             season,
         })
-        
         for (let i = 0; i < countriesId.length; i++) {
             const result = await Country.findByPk(countriesId[i]);
             await result.addActivity(newActivity)
         }
         await newActivity.addCountry(countriesId) 
-        const findActivities = await Activity.findByPk(str+code)
-        
-        res.status(200).send(findActivities)
+
+            res.status(201).send({msg:"Activity added successfully",name:newActivity.name})
     } catch (error) {
+        if(error.response){
+            res.status(error.response.status).send({msg: error.response.status})
+        }
+        else if(error.request){
+            next(error.request)
+        }else
         next(error)
     }
 })
@@ -111,6 +115,21 @@ router.get('/activities',async function(req,res){
             {include: [{model:Country}]}
         )
         res.send(activitiesSearch)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.get('/activity/:name',async function(req,res){
+    const {name}=req.params
+    try {
+        let activitySearch = await Activity.findOne({
+            include: [{model:Country}],
+            where: {
+                name:name
+            }
+        })
+        res.send(activitySearch)
     } catch (error) {
         console.log(error)
     }

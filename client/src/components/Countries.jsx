@@ -1,7 +1,7 @@
 import React, {useEffect,useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { getCountriesByName} from '../reducer/actions';
+import { getCountriesDb,getActivities} from '../reducer/actions';
 import Country from './Country'
 import Sort from './Sort'
 import Pagination from './Pagination';
@@ -11,37 +11,28 @@ import Loading from './Loading';
 
 export default function Countries(){
     const dispatch = useDispatch()
-    
-    const [params] = useSearchParams()
-    const queryname = params.get("name") ?? "";
-    
-    const allCountries = useSelector(state=>state.allCountries)
-    const queryCountries = useSelector(state=>state.countriesByName)
+    const allCountries = useSelector(state=>state.renderCountries)
     const [countriesXpage,setCountriesXPage] = useState(9)
     const [currentPage,setCurrentPage]=useState(1)
     const lastCountry = currentPage *   countriesXpage
     const fisrtCountry = lastCountry - countriesXpage
-    const allDb= queryname? queryCountries : allCountries
-    console.log(allDb)
-    const renderCountries = allDb.slice(fisrtCountry,lastCountry)
+    const renderCountries = allCountries.slice(fisrtCountry,lastCountry)
     
-           
     useEffect(()=>{
-        
-        if(queryname)
-        dispatch(getCountriesByName(queryname))
-    },[dispatch,queryname]);
+        dispatch(getCountriesDb())
+        dispatch(getActivities())
+    },[dispatch]);
     
     return(
         <div>
-            {allDb.length ? (
+            {allCountries.length ? (
             <div>
             <div className='navBox'>
             <Nav/>
             <Sort
             setCountriesXPage={setCountriesXPage}
             setCurrentPage={setCurrentPage}
-            dataLength={allDb.length}    
+            dataLength={allCountries.length}   
             />
             </div>
             <div className='countriesZone'>
@@ -64,12 +55,11 @@ export default function Countries(){
         <Pagination
         currentPage={currentPage}
         countriesXPage={countriesXpage}
-        totalCountries={allDb.length}
+        totalCountries={allCountries.length}
         setCurrentPage={setCurrentPage}
         />
             </div>
             ) : <Loading/>}
         </div>
     )
-
 }

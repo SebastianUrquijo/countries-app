@@ -1,5 +1,4 @@
 import { GET_COUNTRIES,COUNTRY_DETAIL,SORT_AND_FILTER,ADD_ACTIVITY, GET_COUNTRIES_BY_NAME, GET_ACTIVITIES } from "./cases";
-const axios = require('axios');
 
 export function getCountriesDb(){
     return function(dispatch){
@@ -39,11 +38,11 @@ export function getCountryDetail(id){
     }
 }
 
-export function addActivity(activity){
+export function addActivityCheck(name){
     return function (dispatch){
-        axios.post('http://localhost:3001/activity',activity)
-        .then((response)=>{
-            dispatch({type: ADD_ACTIVITY,payload: response.data})
+        return fetch(`http://localhost:3001/activity/${name}`)
+        .then(response =>response.json())
+        .then((activity)=>{dispatch({type: ADD_ACTIVITY,payload: activity})
         })
         .catch(error=>{
             console.log(error)
@@ -66,3 +65,4 @@ export function getActivities(){
 export function sortAndFilter(mode){
     return {type:SORT_AND_FILTER,payload:mode}
 }
+

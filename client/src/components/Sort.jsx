@@ -28,8 +28,9 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
     setCurrentPage(1)};
     
     useEffect(()=>{
-        dispatch(sortAndFilter(sort))
         dispatch(getActivities())
+        dispatch(sortAndFilter(sort))
+        
     },[dispatch,sort]);
 
     return(
@@ -40,6 +41,7 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
             <form className='sortForm'>
                 <div>
                     <select className='orderOption' name='order' id='orderSelection' onChange={handleChange}>
+                    <option hidden value="Select order...">Select order...</option>
                         <option value="ascending">Ascending</option>
                         <option value="descending">Descending</option>
                     </select>
@@ -63,6 +65,7 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
                             <option value='Antarctica'>Antartica</option>
                         </select>
                         <select className='dataOption' name='data' id='dataOrder' onChange={handleChange}>
+                            <option hidden value='Select options...'>Select options...</option>
                             <option value='name'>Name</option>
                             <option value='population'>Population</option>
                         </select>
@@ -80,5 +83,4 @@ export default function Sort({setCountriesXPage,setCurrentPage,dataLength}){
             </form>
         </div>
     )
-
 }

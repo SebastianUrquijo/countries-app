@@ -1,14 +1,22 @@
 import Nav from './Nav'
-import React,{useState} from 'react'
+import Banner from './Banner'
+import React,{/* useEffect, */ useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import '../styles/Form.css'
 import validations from '../reducer/validations'
-import { addActivity} from '../reducer/actions'
+import { addActivityCheck, getCountriesDb} from '../reducer/actions'
+import { useNavigate } from 'react-router-dom'
 
 export default function Form(){
     const dispatch = useDispatch()
-    const countries = useSelector((state)=>state.countriesDb)
+    const navigate = useNavigate()
+    const countriesData = useSelector((state)=>state.countriesRestore)
+    const countries = countriesData && countriesData.sort((a,b)=>a.name.localeCompare(b.name))
     const activities = useSelector((state)=>state.activities)
+    
+    const [keyword,setKeyword] = useState("")
+    const [isOpen,setIsOpen] =useState(false)
+    
     const [errors,setErrors]=useState({})
     const [input,setInput] = useState({
         name: "",
@@ -17,7 +25,9 @@ export default function Form(){
         season:[],
         countriesId: [],
     })
-    
+    console.log(input)
+    console.log(errors)
+
     function handleInputChange(i){  
         setErrors(validations({...input,[i.target.name]:i.target.value},activities))
         setInput({...input,[i.target.name]:i.target.value})            
@@ -96,28 +106,56 @@ export default function Form(){
         }
     }
 
-    function handleSubmit(event){
+    async function handleSubmit(event){
         event.preventDefault()
         const data = {
-            name: input.name || "",
+        name: input.name || "",
         duration: input.duration || "",
         difficulty: input.difficulty || "",
         season: input.season || "",
         countriesId: input.countriesId || "",
         }
         console.log(data)
-        if(Object.keys(errors).length === 0){
-            dispatch(addActivity(data))
+        setErrors(validations(data,activities))
+        if(Object.keys(errors).length === 0
+        && input.name !== ""
+        && input.difficulty !== ""
+        && input.season.length >0
+        && input.duration !== ""
+        && input.countriesId.length > 0
+        ){
+        let response = null
+
+        response = await fetch('http://localhost:3001/activity',
+                {method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            body: JSON.stringify(data)
+            })
+        const result = await response.json()
+        console.log(result)
+        setKeyword(result.msg)
+        if(!isOpen && result){
+            setIsOpen(state => !state);
+        if(result.msg === "Activity added successfully"){
+            dispatch(addActivityCheck(result.name))
+            dispatch(getCountriesDb())
             setInput({
-                name: "",
-            duration:"",
-            difficulty:"",
-            season:[],
-            countriesId: [],
-            }) 
+                name:"",
+                difficulty: "",
+                season: [],
+                duration: "",
+                countriesId: []
+            })
+            }
+        }
         }
     }
 
+    /* useEffect(() =>{
+        dispatch(getCountriesDb())
+        },[dispatch]); */
     return (
         <div className='formPage'>
             <div className="navSector">
@@ -126,7 +164,7 @@ export default function Form(){
             <div className="formularyPage">
             <h1>Agregar Actividad</h1>
 
-            <form className='addForm' onSubmit={(e)=>handleSubmit(e)}>
+            <form className='addForm' onSubmit={handleSubmit}>
             <div>
                 <h3>Nombre de la actividad:</h3>
                 <input className={errors.name && "danger"} type='text' placeholder="Nombre de la actividad..."
@@ -182,11 +220,27 @@ export default function Form(){
                 })}        
             </div>
             <div>
-                {Object.keys(errors).length === 0 && Object.keys(input).length > 0 ? 
-                <button type='submit' className='finalButton'>Agregar Actividad</button>   
-            :null}
+                {Object.keys(errors).length === 0 && Object.keys(input).length > 0 && 
+                <input type='submit' value= "Create Activity" className='finalButton'onClick={handleSubmit}/>   
+            }
             </div>
             </form>
+            <Banner isOpen={isOpen} setIsOpen={setIsOpen}>
+                {keyword.length ? (
+                    <>
+                    <h2>{keyword}</h2>
+                    {keyword === "Activity added successfully" ? (
+                        <button onClick={()=> navigate("/countries",{replace:true})}className='bannerUpdate'> 
+                            Go to Countries
+                        </button>
+                    ): (
+                        <button onClick={()=> setIsOpen(state=>!state)}>Ok</button>
+                    )}
+                    </>
+                ):(
+                    <h2>Invalid Data</h2>
+                )}
+            </Banner>
             </div>
         </div>
     )

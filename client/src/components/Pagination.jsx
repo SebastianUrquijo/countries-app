@@ -18,5 +18,5 @@ export default function Pagination({currentPage,countriesXPage,totalCountries,se
                     </button>
                 )):<></>}
             </div>
-        )
+        )     
 }

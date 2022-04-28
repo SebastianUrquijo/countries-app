@@ -5,6 +5,7 @@ import Countries from './components/Countries';
 import CountryDetail from './components/CountryDetail'
 import Form from './components/Form'
 import {Routes,Route} from 'react-router-dom'
+import SearchPage from './components/SearchPage';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/countries' element={<Countries/>}/>
+      <Route path='/search/:name' element={<SearchPage/>}/>
       <Route path='/countries/:id' element={<CountryDetail/>}/>
       <Route path='/activity' element={<Form/>}/>
       </Routes>
